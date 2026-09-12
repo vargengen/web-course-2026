@@ -1,0 +1,164 @@
+/* Глобальный box-sizing */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* ===== ШАПКА ===== */
+header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.header-info h1 {
+    font-size: 2rem;
+    color: #1e3a8a;
+    margin-bottom: 5px;
+}
+
+.position {
+    font-size: 1.1rem;
+    color: #7c3aed;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.slogan {
+    font-style: italic;
+    color: #666;
+}
+
+/* ===== НАВИГАЦИЯ ===== */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    background: #1e3a8a;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffd700;
+    text-decoration: underline;
+}
+
+/* ===== ОСНОВНОЙ КОНТЕНТ ===== */
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+section h2 {
+    color: #1e3a8a;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #7c3aed;
+    padding-bottom: 5px;
+}
+
+article p {
+    margin-bottom: 10px;
+}
+
+/* ===== ОБРАЗОВАНИЕ ===== */
+#education ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#education li {
+    background: #f4f6f8;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border-left: 4px solid #7c3aed;
+}
+
+/* ===== НАВЫКИ ===== */
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill {
+    background: #7c3aed;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* ===== КОНТАКТЫ ===== */
+footer {
+    background: #1e3a8a;
+    color: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+footer h2 {
+    color: white;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #ffd700;
+    padding-bottom: 5px;
+}
+
+.contacts-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.contacts-list a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.contacts-list a:hover {
+    color: #ffd700;
+    text-decoration: underline;
+}
