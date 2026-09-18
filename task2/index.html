@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSTANT — Фотостудия</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ШАПКА -->
+    <header class="header">
+        <div class="logo">INSTANT</div>
+
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="burger" aria-label="Меню">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav class="nav">
+            <a href="#hero">Главная</a>
+            <a href="#about">О нас</a>
+            <a href="#services">Услуги</a>
+            <a href="#contacts">Контакты</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>INSTANT</h1>
+            <p class="hero-subtitle">ФОТОСТУДИЯ</p>
+            <p class="hero-text">
+                Мы — креативная фотостудия. Мы любим путешествия, красивые истории и людей,
+                которые не боятся быть собой. Каждый кадр — это маленькая история.
+            </p>
+        </div>
+    </section>
+
+    <!-- WELCOME -->
+    <section class="welcome" id="about">
+        <h2>Добро пожаловать</h2>
+        <p>
+            Мы — команда фотографов, которые превращают обычные моменты в искусство.
+            Наша студия специализируется на портретной, свадебной и репортажной съёмке.
+            Мы работаем по всему миру и всегда готовы к новым проектам.
+        </p>
+        <a href="#services" class="btn">Узнать больше</a>
+    </section>
+
+    <!-- УСЛУГИ (4 карточки) -->
+    <section class="services" id="services">
+        <article class="card">
+            <img src="atmosf.jpg" alt="Атмосфера">
+            <div class="card-overlay">
+                <h3>Атмосфера</h3>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="nast.jpg" alt="Ностальгия">
+            <div class="card-overlay">
+                <h3>Ностальгия</h3>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="high.jpg" alt="Высотная съемка">
+            <div class="card-overlay">
+                <h3>Высотная съемка</h3>
+            </div>
+        </article>
+
+        <article class="card">
+            <img src="sky.jpg" alt="Небо">
+            <div class="card-overlay">
+                <h3>Небо</h3>
+            </div>
+        </article>
+    </section>
+
+    <!-- ФОРМА ОБРАТНОЙ СВЯЗИ -->
+    <section class="contact" id="contacts">
+        <h2>Свяжитесь с нами</h2>
+        <form class="contact-form">
+            <label>
+                <span>Имя</span>
+                <input type="text" name="name" placeholder="Ваше имя" required>
+            </label>
+            <label>
+                <span>Email</span>
+                <input type="email" name="email" placeholder="you@example.com" required>
+            </label>
+            <label>
+                <span>Сообщение</span>
+                <textarea name="message" rows="4" placeholder="Ваше сообщение" required></textarea>
+            </label>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    </section>
+
+    <!-- ФУТЕР -->
+    <footer class="footer">
+        <p>© 2026 VGG. Все права защищены.</p>
+        <div class="socials">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Telegram</a>
+        </div>
+    </footer>
+
+</body>
+</html>
