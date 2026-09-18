@@ -215,3 +215,44 @@ body {
     font-size: 0.9rem;
     color: #64748b;
 }
+
+.lightbox {
+    display: none; /* скрыт по умолчанию */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.lightbox:target {
+    display: flex;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 2rem;
+    text-decoration: none;
+    line-height: 1;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.lightbox-close:hover {
+    color: #a78bfa;
+    transform: scale(1.2);
+}
