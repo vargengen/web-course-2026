@@ -3,79 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Резюме — Корбут Варвара Витальевна</title>
+    <title>Резюме — Корбут Варвары Витальевны</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <img src="avatar1.jpg" alt="Фото" class="avatar">
-        <div class="header-info">
-            <h1>Корбут Варвара Витальевна</h1>
-            <p class="position">Студент. Математик-программист.</p>
-            <p class="slogan">Делаю с душой, а с чьей - уже не так важно.</p>
-        </div>
-    </header>
+    <div class="resume">
 
-    <nav>
-        <a href="#about">О себе</a>
-        <a href="#education">Образование</a>
-        <a href="#skills">Навыки</a>
-        <a href="#contacts">Контакты</a>
-    </nav>
+        <!-- ЛЕВАЯ КОЛОНКА (сайдбар) -->
+        <aside class="sidebar">
+            <img src="avatar1.jpg" alt="Фото Корбут Варвары" class="avatar">
 
-    <main>
-        <section id="about">
-            <h2>О себе</h2>
-            <article>
-                <p>Начинаю путь в профессии.</p>
-                <p>Веб-разработкой заинтересовала меня еще на парах в универе. Сначала верстала простые страницы, теперь изучаю JavaScript и React.</p>
-                <p>Ответственная, трудолюбивая, стрессоустойчивая.</p>
-                <p>Найду творческий подход к любой задаче.</p>
-                <p>В свободное время люблю рисовать и читать художественную и техническую литературу, участвую в хакатонах.</p>
-            </article>
-        </section>
+            <section class="sidebar-block">
+                <h2>Контакты</h2>
+                <ul class="contacts">
+                    <li><a href="mailto:KorbutV@example.com">KorbutV@example.com</a></li>
+                    <li><a href="tel:+375291234567">+375 (29) 123-45-67</a></li>
+                    <li><a href="https://github.com/vargengen" target="_blank">github.com/vargengen</a></li>
+                </ul>
+            </section>
 
-        <section id="education">
-            <h2>Образование</h2>
-            <ul>
-                <li>
-                    <strong>Средняя школа №139</strong> — 2013–2018
-                </li>
-                <li>
-                    <strong>Средняя школа №152</strong> — 2019–2024
-                </li>
-                <li>
-                    <strong>БГУ, Механико-математический факультет</strong> — 2024-...
-                </li>
-            </ul>
-        </section>
+            <section class="sidebar-block">
+                <h2>Навыки</h2>
+                <div class="skills-list">
+                    <span class="skill">HTML5</span>
+                    <span class="skill">CSS3</span>
+                    <span class="skill">C++</span>
+                    <span class="skill">Git</span>
+                    <span class="skill">JavaScript</span>
+                    <span class="skill">VS Code</span>
+                    <span class="skill">Figma</span>
+                    <span class="skill">PhotoShop</span>
+                </div>
+            </section>
 
-        <section id="skills">
-            <h2>Навыки</h2>
-            <div class="skills-list">
-                <span class="skill">HTML5</span>
-                <span class="skill">CSS3</span>
-                <span class="skill">C++</span>
-                <span class="skill">Java</span>
-                <span class="skill">Git</span>
-                <span class="skill">JavaScript</span>
-                <span class="skill">VS Code</span>
-                <span class="skill">Figma</span>
-                <span class="skill">Photoshop</span>
-                <span class="skill">Английский B2</span>
-            </div>
-        </section>
-    </main>
+            <section class="sidebar-block">
+                <h2>Языки</h2>
+                <ul class="languages">
+                    <li>Русский — родной</li>
+                    <li>Английский — B2</li>
+                </ul>
+            </section>
+        </aside>
 
-    <footer id="contacts">
-        <h2>Контакты</h2>
-        <div class="contacts-list">
-            <a href="mailto:korbut@example.com">korbut@example.com</a>
-            <a href="tel:+375291234567">+375 (29) 123-45-67</a>
-            <a href="https://github.com/vargengen" target="_blank">GitHub</a>
-        </div>
-    </footer>
+        <!-- ПРАВАЯ КОЛОНКА (основной контент) -->
+        <main class="main-content">
+
+            <header class="header">
+                <h1>Корбут Варвара Витальевна</h1>
+                <p class="position">Студент. Математик-Программист</p>
+                <p class="slogan">Делаю с душой, а с чьей - уже не так важно</p>
+            </header>
+
+            <section class="section" id="about">
+                <h2>О себе</h2>
+                <article>
+                    <p>Начинаю путь в профессии.</p>
+                    <p>Веб-разработкой заинтересовала меня еще на парах в универе. Сначала верстала простые страницы, теперь изучаю JavaScript и React.</p>
+                    <p>Ответственная, трудолюбивая, стрессоустойчивая.</p>
+                    <p>Найду творческий подход к любой задаче.</p>
+                    <p>В свободное время люблю рисовать и читать художественную и техническую литературу, участвую в хакатонах.</p>
+                </article>
+            </section>
+
+            <section class="section" id="education">
+                <h2>Образование</h2>
+                <ul class="timeline">
+                    <li class="timeline-item">
+                        <span class="timeline-date">2013-2018</span>
+                        <h3>Средняя школа №139</h3>
+                    </li>
+                    <li class="timeline-item">
+                        <span class="timeline-date">2019-2024</span>
+                        <h3>Средняя школа №152</h3>
+                    </li>
+                    <li class="timeline-item">
+                        <span class="timeline-date">2024-...</span>
+                        <h3>Беларусский государственный университет</h3>
+                        <p>Механико-математический факультет</p>
+                    </li>
+                </ul>
+            </section>
+
+        </main>
+
+    </div>
 
 </body>
-<html>
+</html>
