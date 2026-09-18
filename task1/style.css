@@ -35,7 +35,13 @@ body {
     background: #1e293b;
     color: #e2e8f0;
     padding: 40px 30px;
-    flex: 0 0 300px; /* фиксированная ширина 300px */
+    flex: 0 0 300px; 
+}
+
+.avatar-link {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
 }
 
 .avatar {
@@ -44,7 +50,12 @@ body {
     border-radius: 50%;
     object-fit: cover;
     border: 4px solid #7c3aed;
-    align-self: center; /* центрируем внутри flex-колонки */
+    align-self: center; 
+}
+
+.avatar:hover {
+    transform: scale(1.05);
+    border-color: #a78bfa;
 }
 
 .sidebar-block h2 {
