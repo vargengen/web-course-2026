@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список задач — To-Do</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="app">
+        <header class="app-header">
+            <h1>✓ Список задач</h1>
+            <p class="app-subtitle">Планируй. Делай. Отмечай.</p>
+        </header>
+
+        <!-- Форма добавления -->
+        <form class="add-form" id="add-form">
+            <input
+                type="text"
+                id="task-input"
+                class="add-input"
+                placeholder="Введите задачу..."
+                autocomplete="off"
+            >
+            <button type="submit" class="btn-add">Добавить</button>
+        </form>
+
+        <!-- Фильтры -->
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">Все</button>
+            <button class="filter-btn" data-filter="active">Активные</button>
+            <button class="filter-btn" data-filter="completed">Завершённые</button>
+        </div>
+
+        <!-- Счётчик -->
+        <div class="counter">
+            Осталось: <span id="count-active">0</span> ·
+            Выполнено: <span id="count-completed">0</span>
+        </div>
+
+        <!-- Список задач (пустой, заполняется в JS) -->
+        <ul class="task-list" id="task-list"></ul>
+
+        <!-- Сообщение, если задач нет -->
+        <p class="empty-message" id="empty-message">Задач пока нет. Добавьте первую!</p>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
