@@ -1,0 +1,257 @@
+/* ===== ПЕРЕМЕННЫЕ (ПАЛИТРА) ===== */
+:root {
+    --lemon: #FDFDC9;         /* лимонный — фон */
+    --lemon-dark: #F5F5A8;    /* лимонный тёмнее — hover */
+    --purple: #A78BFA;        /* фиолетовый — акцент */
+    --purple-dark: #8B5CF6;   /* фиолетовый тёмнее — hover */
+    --purple-light: #C4B5FD;  /* светло-фиолетовый */
+    --white: #FFFFFF;
+    --dark: #1E1B4B;
+    --gray: #6B7280;
+    --gray-light: #F3F4F6;
+    --red: #EF4444;
+    --green: #10B981;
+
+    --radius: 14px;
+    --transition: 0.3s ease;
+}
+
+/* ===== ГЛОБАЛЬНО ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: var(--lemon);
+    color: var(--dark);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 30px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* ===== КОНТЕЙНЕР ПРИЛОЖЕНИЯ ===== */
+.app {
+    width: 100%;
+    max-width: 600px;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 20px 50px rgba(167, 139, 250, 0.25);
+    padding: 30px;
+}
+
+/* ===== ШАПКА ===== */
+.app-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.app-header h1 {
+    font-size: 1.8rem;
+    color: var(--purple-dark);
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.app-subtitle {
+    color: var(--gray);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+/* ===== ФОРМА ДОБАВЛЕНИЯ ===== */
+.add-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.add-input {
+    flex: 1;
+    min-height: 44px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 2px solid var(--purple-light);
+    border-radius: var(--radius);
+    background: var(--lemon);
+    color: var(--dark);
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.add-input::placeholder {
+    color: var(--gray);
+}
+
+.add-input:focus {
+    outline: none;
+    border-color: var(--purple);
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.2);
+}
+
+.btn-add {
+    min-height: 44px;
+    padding: 12px 22px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--white);
+    background: var(--purple);
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background var(--transition), transform var(--transition);
+}
+
+.btn-add:hover {
+    background: var(--purple-dark);
+    transform: scale(1.05);
+}
+
+.btn-add:active {
+    transform: scale(0.98);
+}
+
+/* ===== ФИЛЬТРЫ ===== */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.filter-btn {
+    flex: 1;
+    min-height: 44px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--purple-dark);
+    background: var(--lemon);
+    border: 2px solid transparent;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.filter-btn:hover {
+    background: var(--lemon-dark);
+}
+
+.filter-btn.active {
+    background: var(--purple);
+    color: var(--white);
+    border-color: var(--purple-dark);
+}
+
+/* ===== СЧЁТЧИК ===== */
+.counter {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--gray);
+    background: var(--gray-light);
+    padding: 10px;
+    border-radius: var(--radius);
+    margin-bottom: 20px;
+}
+
+.counter span {
+    font-weight: 700;
+    color: var(--purple-dark);
+}
+
+/* ===== СПИСОК ЗАДАЧ ===== */
+.task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Карточка задачи */
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    background: var(--lemon);
+    border-left: 4px solid var(--purple);
+    border-radius: var(--radius);
+    transition: transform var(--transition), box-shadow var(--transition), opacity var(--transition);
+}
+
+.task-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(167, 139, 250, 0.2);
+}
+
+/* Выполненная задача */
+.task-item.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+    border-left-color: var(--green);
+}
+
+.task-item.completed .task-text {
+    color: var(--gray);
+}
+
+/* Чекбокс */
+.task-checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--purple);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* Текст задачи */
+.task-text {
+    flex: 1;
+    font-size: 1rem;
+    color: var(--dark);
+    word-break: break-word;
+}
+
+/* Кнопка удаления */
+.btn-delete {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: var(--red);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: background var(--transition), color var(--transition), transform var(--transition);
+}
+
+.btn-delete:hover {
+    background: var(--red);
+    color: var(--white);
+    transform: rotate(90deg);
+}
+
+/* ===== ПУСТОЕ СООБЩЕНИЕ ===== */
+.empty-message {
+    text-align: center;
+    color: var(--gray);
+    font-style: italic;
+    padding: 20px;
+    display: none;
+}
+
+.empty-message.visible {
+    display: block;
+}
