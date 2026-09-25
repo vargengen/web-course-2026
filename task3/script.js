@@ -1,13 +1,10 @@
-// ============================================
-// СОСТОЯНИЕ ПРИЛОЖЕНИЯ
-// ============================================
-let tasks = [];              // массив задач
-let currentFilter = 'all';   // текущий фильтр
-let nextId = 1;              // счётчик для уникальных id
 
-// ============================================
-// DOM-ЭЛЕМЕНТЫ
-// ============================================
+let tasks = [];              
+let currentFilter = 'all';   
+let nextId = 1;             
+
+
+// DOM-элементы
 const form = document.getElementById('add-form');
 const input = document.getElementById('task-input');
 const list = document.getElementById('task-list');
@@ -16,13 +13,8 @@ const countCompleted = document.getElementById('count-completed');
 const filterBtns = document.querySelectorAll('.filter-btn');
 const emptyMessage = document.getElementById('empty-message');
 
-// ============================================
-// ФУНКЦИИ РАБОТЫ С ДАННЫМИ
-// ============================================
+// Функции
 
-/**
- * Добавить новую задачу
- */
 function addTask(text) {
     tasks.push({
         id: nextId++,
@@ -31,16 +23,12 @@ function addTask(text) {
     });
 }
 
-/**
- * Удалить задачу по id
- */
+
 function deleteTask(id) {
     tasks = tasks.filter(task => task.id !== id);
 }
 
-/**
- * Переключить статус «выполнено»
- */
+
 function toggleTask(id) {
     tasks = tasks.map(task =>
         task.id === id
@@ -49,9 +37,7 @@ function toggleTask(id) {
     );
 }
 
-/**
- * Получить задачи по текущему фильтру
- */
+
 function getFilteredTasks() {
     if (currentFilter === 'active') {
         return tasks.filter(task => !task.completed);
@@ -62,9 +48,7 @@ function getFilteredTasks() {
     return tasks; // 'all'
 }
 
-// ============================================
-// РЕНДЕР
-// ============================================
+
 function render() {
     const filtered = getFilteredTasks();
 
@@ -116,18 +100,17 @@ function render() {
         emptyMessage.classList.remove('visible');
     }
 
-    // Обновляем счётчик (по ВСЕМ задачам, не по фильтру)
+    // Обновляем счётчик (по всем задачам)
     const active = tasks.filter(task => !task.completed).length;
     const completed = tasks.filter(task => task.completed).length;
     countActive.textContent = active;
     countCompleted.textContent = completed;
 }
 
-// ============================================
-// ОБРАБОТЧИКИ СОБЫТИЙ
-// ============================================
 
-// Добавление задачи (по кнопке ИЛИ по Enter — оба работают через submit)
+//обработка событий
+
+// Добавление задачи
 form.addEventListener('submit', (event) => {
     event.preventDefault(); // отменяем перезагрузку страницы
 
@@ -158,7 +141,6 @@ filterBtns.forEach(btn => {
     });
 });
 
-// ============================================
-// ПЕРВЫЙ РЕНДЕР
-// ============================================
+
+// первый рендер
 render();

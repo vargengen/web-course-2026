@@ -35,7 +35,7 @@ body {
     align-items: flex-start;
 }
 
-/* ===== КОНТЕЙНЕР ПРИЛОЖЕНИЯ ===== */
+/* контейнер приложения*/
 .app {
     width: 100%;
     max-width: 600px;
@@ -45,7 +45,7 @@ body {
     padding: 30px;
 }
 
-/* ===== ШАПКА ===== */
+/* шапка*/
 .app-header {
     text-align: center;
     margin-bottom: 25px;
@@ -64,7 +64,7 @@ body {
     font-style: italic;
 }
 
-/* ===== ФОРМА ДОБАВЛЕНИЯ ===== */
+/* =форма добавления */
 .add-form {
     display: flex;
     gap: 10px;
@@ -117,7 +117,7 @@ body {
     transform: scale(0.98);
 }
 
-/* ===== ФИЛЬТРЫ ===== */
+/*фильтр */
 .filters {
     display: flex;
     flex-wrap: wrap;
@@ -150,7 +150,7 @@ body {
     border-color: var(--purple-dark);
 }
 
-/* ===== СЧЁТЧИК ===== */
+/*счетчик*/
 .counter {
     text-align: center;
     font-size: 0.9rem;
@@ -166,7 +166,7 @@ body {
     color: var(--purple-dark);
 }
 
-/* ===== СПИСОК ЗАДАЧ ===== */
+/*список задач*/
 .task-list {
     list-style: none;
     display: flex;
@@ -243,7 +243,7 @@ body {
     transform: rotate(90deg);
 }
 
-/* ===== ПУСТОЕ СООБЩЕНИЕ ===== */
+/* пустое сообщение */
 .empty-message {
     text-align: center;
     color: var(--gray);
