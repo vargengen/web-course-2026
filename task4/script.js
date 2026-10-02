@@ -31,7 +31,7 @@ function generateSecret() {
             digits.push(digit);
         }
     }
-    return digits;
+    return digits.join('');
 }
 
 
@@ -90,7 +90,6 @@ function renderHistory() {
         historyEmpty.classList.add('hidden');
     }
 
-    // Идём с конца — новые сверху
     state.history.forEach(item => {
         const li = document.createElement('li');
         li.className = 'history-item';
@@ -139,7 +138,7 @@ function render() {
 function handleGuess(value) {
     const validation = validateInput(value);
     if (!validation.valid) {
-        showMessage('⚠️ ' + validation.error, 'error');
+        showMessage(`Не угадал, попробуй ещё раз. Загаданное число: ${state.secret}`, 'error');
         return;
     }
 
