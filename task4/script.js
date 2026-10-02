@@ -1,10 +1,10 @@
 const state = {
-    secret: [],              
+    secret: '',              
     history: [],             
     attempts: 0,             
     maxAttempts: Infinity,   
     mode: 'infinite',        
-    limit: 12,               
+    limit: 5,               
     isGameOver: false,       
 };
 
@@ -21,6 +21,13 @@ const newGameBtn = document.getElementById('new-game');
 const modeBtns = document.querySelectorAll('.mode-btn');
 const limitSwitch = document.getElementById('limit-switch');
 const limitBtns = document.querySelectorAll('.limit-btn');
+
+const modal = document.getElementById('modal');
+const modalIcon = document.getElementById('modal-icon');
+const modalTitle = document.getElementById('modal-title');
+const modalText = document.getElementById('modal-text');
+const modalNewGame = document.getElementById('modal-new-game');
+const revealBtn = document.getElementById('reveal-btn');
 
 
 function generateSecret() {
@@ -112,7 +119,6 @@ function renderHistory() {
         resultSpan.append(bullsSpan, cowsSpan);
         li.append(guessSpan, resultSpan);
 
-        // prepend → новые сверху
         historyList.prepend(li);
     });
 }
@@ -134,12 +140,36 @@ function render() {
     renderHistory();
 }
 
+function showModal(type, title, text) {
+    const icons = { win: '🎉', lose: '😔', info: '👀' };
+    modalIcon.textContent = icons[type] || 'ℹ️';
+    modalTitle.textContent = title;
+    modalText.textContent = text;
+    modal.classList.remove('hidden');
+}
+
+function hideModal() {
+    modal.classList.add('hidden');
+}
+
+modalNewGame.addEventListener('click', () => {
+    hideModal();
+    startNewGame();
+});
+
+function updateRevealButton() {
+    if (state.mode === 'infinite') {
+        revealBtn.classList.remove('hidden');
+    } else {
+        revealBtn.classList.add('hidden');
+    }
+}
 
 function handleGuess(value) {
     const validation = validateInput(value);
     if (!validation.valid) {
-        showMessage(`Не угадал, попробуй ещё раз. Загаданное число: ${state.secret}`, 'error');
-        return;
+        showMessage('⚠️ ' + validation.error, 'error');
+        return;   
     }
 
     const { bulls, cows } = countBullsAndCows(state.secret, value);
@@ -149,33 +179,39 @@ function handleGuess(value) {
 
     if (bulls === 4) {
         state.isGameOver = true;
-        showMessage(`Победа! Поздравляем! Угадано за ${state.attempts} ${declOfNum(state.attempts, ['попытку', 'попытки', 'попыток'])}.`, 'success');
-        disableInput();
+        showMessage(`🐂 Быков: 4, 🐄 Коров: 0.`, 'success');
         render();
+        disableInput();
+
+        setTimeout(() => {
+            showModal(
+                'win',
+                'Победа!',
+                `Поздравляем! Угадано за ${state.attempts} ${declOfNum(state.attempts, ['попытку', 'попытки', 'попыток'])}.`
+            );
+        }, 400);
         return;
     }
+
+    showMessage(`🐂 Быков: ${bulls}, 🐄 Коров: ${cows}.`, 'info');
+    render();
 
     if (state.mode === 'limited' && state.attempts >= state.limit) {
         state.isGameOver = true;
-        showMessage(`Не угадал, попробуй ещё раз. Загаданное число: ${state.secret.join('')}`, 'error');
         disableInput();
-        render();
-        return;
-    }
 
-    let remainingText = '';
-    if (state.mode === 'limited') {
-        const left = state.limit - state.attempts;
-        remainingText = ` Осталось попыток: ${left}.`;
+        setTimeout(() => {
+            showModal(
+                'lose',
+                'Не угадал',
+                `Попробуй ещё раз. Загаданное число: ${state.secret}`
+            );
+        }, 600);
     }
-    showMessage(`🐂 Быков: ${bulls}, 🐄 Коров: ${cows}.${remainingText}`, 'info');
-
-    render();
 }
 
 
 function declOfNum(n, forms) {
-    // forms = ['попытку', 'попытки', 'попыток']
     n = Math.abs(n) % 100;
     const n1 = n % 10;
     if (n > 10 && n < 20) return forms[2];
@@ -203,7 +239,6 @@ function startNewGame() {
     state.attempts = 0;
     state.isGameOver = false;
 
-    // Определяем лимит
     if (state.mode === 'infinite') {
         state.maxAttempts = Infinity;
     } else {
@@ -213,6 +248,8 @@ function startNewGame() {
     input.value = '';
     enableInput();
     clearMessage();
+    hideModal();             
+    updateRevealButton();
 
     if (state.mode === 'infinite') {
         showMessage('♾️ Бесконечный режим. Введите 4 цифры.', 'info');
@@ -222,8 +259,6 @@ function startNewGame() {
 
     render();
 }
-
-
 
 
 form.addEventListener('submit', (event) => {
@@ -239,13 +274,17 @@ form.addEventListener('submit', (event) => {
 
 newGameBtn.addEventListener('click', startNewGame);
 
+revealBtn.addEventListener('click', () => {
+    if (state.mode !== 'infinite') return;
+    showModal('info', 'Загаданное число', state.secret);
+});
+
 modeBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         modeBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         state.mode = btn.dataset.mode;
 
-        // Показ/скрытие выбора лимита
         if (state.mode === 'limited') {
             limitSwitch.classList.remove('hidden');
         } else {
