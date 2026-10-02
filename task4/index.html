@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Быки и Коровы</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1>🐄 Быки и Коровы 🐂</h1>
+        <button class="btn-new-game" id="new-game">Новая игра</button>
+    </header>
+
+    <section class="controls">
+        <div class="mode-switch">
+            <span class="controls-label">Режим:</span>
+            <button class="mode-btn active" data-mode="infinite">♾️ Бесконечный</button>
+            <button class="mode-btn" data-mode="limited">🎯 С лимитом</button>
+        </div>
+
+        <div class="limit-switch hidden" id="limit-switch">
+            <span class="controls-label">Количество попыток:</span>
+            <button class="limit-btn active" data-limit="12">🌿 12</button>
+            <button class="limit-btn" data-limit="8">🌸 8</button>
+            <button class="limit-btn" data-limit="5">🔥 5</button>
+            <button class="limit-btn" data-limit="3">💀 3</button>
+        </div>
+    </section>
+
+    <main class="game-grid">
+
+        <aside class="sidebar-left">
+            <h2>Правила</h2>
+            <p>Компьютер загадал <strong>4 цифры</strong> от 0 до 9. Все цифры <strong>разные</strong>.</p>
+
+            <div class="rule">
+                <span class="rule-icon">🐂</span>
+                <div>
+                    <strong>Бык</strong> — цифра угадана и стоит на своём месте.
+                </div>
+            </div>
+
+            <div class="rule">
+                <span class="rule-icon">🐄</span>
+                <div>
+                    <strong>Корова</strong> — цифра есть в числе, но стоит не на своём месте.
+                </div>
+            </div>
+
+            <div class="rule example">
+                <strong>Пример:</strong><br>
+                Загадано: <code>1234</code><br>
+                Ваш ход: <code>1324</code><br>
+                Результат: 🐂 2, 🐄 2
+            </div>
+        </aside>
+
+        <section class="game-center">
+            <form class="guess-form" id="guess-form">
+                <label for="guess-input" class="guess-label">Введите 4 цифры:</label>
+                <input
+                    type="text"
+                    id="guess-input"
+                    class="guess-input"
+                    maxlength="4"
+                    placeholder="1234"
+                    inputmode="numeric"
+                    autocomplete="off"
+                >
+                <button type="submit" class="btn-check">Проверить</button>
+            </form>
+
+            <div class="message" id="message"></div>
+        </section>
+
+        <aside class="sidebar-right">
+            <div class="stat-card">
+                <h2>Попыток</h2>
+                <p class="stat-value" id="attempts-count">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>Осталось</h2>
+                <p class="stat-value" id="attempts-left">∞</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>Режим</h2>
+                <p class="stat-mode" id="current-mode">Бесконечный</p>
+            </div>
+        </aside>
+
+    </main>
+
+    <section class="history">
+        <h2>История попыток</h2>
+        <ul class="history-list" id="history-list"></ul>
+        <p class="history-empty" id="history-empty">Пока нет попыток</p>
+    </section>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
