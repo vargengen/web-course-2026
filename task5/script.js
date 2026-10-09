@@ -261,7 +261,6 @@ startBtn.addEventListener('click', () => {
 
 modalRestart.addEventListener('click', () => {
     hideModal();
-    startGame();
 });
 
 
