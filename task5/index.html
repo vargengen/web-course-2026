@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Починка корабля</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-wrapper">
+
+        <header class="game-header">
+            <h1>Починка корабля</h1>
+            <p class="subtitle">Повтори сигнал, чтобы восстановить системы</p>
+        </header>
+
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="status-label">Уровень</span>
+                <span class="status-value" id="level">0</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Система</span>
+                <span class="status-value" id="system">—</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Рекорд</span>
+                <span class="status-value" id="best">0</span>
+            </div>
+        </div>
+
+        <div class="game-board" id="game-board">
+
+            <div class="board-panel">
+
+                <button class="btn-simon btn-0" data-index="0" aria-label="Модуль 1"></button>
+
+                <button class="btn-simon btn-1" data-index="1" aria-label="Модуль 2"></button>
+
+                <button class="btn-simon btn-2" data-index="2" aria-label="Модуль 3"></button>
+
+                <button class="btn-simon btn-3" data-index="3" aria-label="Модуль 4"></button>
+
+            </div>
+
+            <div class="game-message" id="message">
+                Нажми «Начать починку», чтобы запустить диагностику
+            </div>
+
+        </div>
+
+        <div class="controls">
+            <button class="btn-start" id="start-btn">🚀 Начать починку</button>
+        </div>
+
+
+        <footer class="game-footer">
+            <p>Смотри на сигналы и повторяй их в том же порядке</p>
+        </footer>
+
+    </div>
+
+
+    <div class="modal hidden" id="modal">
+        <div class="modal-content">
+            <div class="modal-icon" id="modal-icon">💥</div>
+            <h2 class="modal-title" id="modal-title">Корабль сломался</h2>
+            <p class="modal-text" id="modal-text"></p>
+            <button class="btn-start" id="modal-restart">Попробовать снова</button>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
