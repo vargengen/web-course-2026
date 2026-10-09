@@ -196,7 +196,10 @@ function gameOver() {
     updateButtonsDisabled(true);
     shakeBoard();
 
-    showMessage('❌ Ошибка! Корабль сломался.', 'error');
+    startBtn.disabled = false;
+    startBtn.textContent = 'Начать заново';
+
+    showMessage('Ошибка! Корабль сломался.', 'error');
 
     const timerId = setTimeout(() => {
         showModal(
@@ -210,7 +213,7 @@ function gameOver() {
 
 
 function startGame() {
-    // Сбрасываем состояние
+    
     clearAllTimers();
     state.sequence = [];
     state.playerIndex = 0;
@@ -219,7 +222,7 @@ function startGame() {
     state.isPlayerTurn = false;
     state.isGameOver = false;
 
-    // Обновляем UI
+
     levelEl.textContent = '0';
     systemEl.textContent = '—';
     hideModal();
@@ -227,8 +230,8 @@ function startGame() {
 
     showMessage('Диагностика запущена...', '');
     startBtn.disabled = true;
+    startBtn.textContent = 'Идёт диагностика...';
 
-    // Первый раунд — с задержкой
     const timerId = setTimeout(() => {
         nextRound();
     }, 800);
