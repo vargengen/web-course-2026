@@ -2,9 +2,8 @@ class GameController {
     constructor(model, view) {
         this.model = model;
         this.view = view;
-        this.config = model.config;   // берём конфиг из Model
+        this.config = model.config;  
 
-        // Служебные флаги (не состояние игры!)
         this.isShowing = false;
         this.isPlayerTurn = false;
         this.timers = [];
@@ -17,7 +16,6 @@ class GameController {
         this.view.onStartClick(() => this.startGame());
         this.view.onModalRestartClick(() => this.handleModalClose());
 
-        // Первоначальное состояние UI
         this.view.updateBestScore(this.model.bestScore);
         this.view.disableButtons(true);
         this.view.showMessage('Нажми «Начать починку», чтобы запустить диагностику');

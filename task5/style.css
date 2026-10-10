@@ -219,7 +219,6 @@ body::before {
     color: var(--btn-3-active);
 }
 
-/* Клик игрока */
 .btn-simon.pressed {
     transform: scale(0.95);
     filter: brightness(0.8);
@@ -247,7 +246,6 @@ body::before {
     color: #FCA5A5;
 }
 
-/* ===== УПРАВЛЕНИЕ ===== */
 .controls {
     display: flex;
     justify-content: center;
