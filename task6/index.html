@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Сиреневая змейка</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-wrapper">
+
+        <header class="game-header">
+            <h1>Сиреневая змейка</h1>
+            <p class="subtitle">Собирай яблоки, расти, не врезайся</p>
+        </header>
+
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="status-label">Счёт</span>
+                <span class="status-value" id="score">0</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Рекорд</span>
+                <span class="status-value" id="best">0</span>
+            </div>
+        </div>
+
+        <div class="game-board">
+            <canvas id="canvas" width="400" height="400"></canvas>
+
+            <div class="overlay hidden" id="overlay">
+                <div class="overlay-content">
+                    <h2 class="overlay-title" id="overlay-title">Игра окончена</h2>
+                    <p class="overlay-text" id="overlay-text"></p>
+                    <button class="btn-restart" id="restart-btn">Начать заново</button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="game-footer">
+            <p>Управление: стрелки ↑ ↓ ← →</p>
+        </footer>
+
+    </div>
+
+    <script src="model.js" defer></script>
+    <script src="view.js" defer></script>
+    <script src="controller.js" defer></script>
+</body>
+</html>
