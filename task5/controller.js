@@ -2,8 +2,9 @@ class GameController {
     constructor(model, view) {
         this.model = model;
         this.view = view;
-        this.config = model.config;  
+        this.config = model.config;
 
+        // Служебные флаги (НЕ состояние игры)
         this.isShowing = false;
         this.isPlayerTurn = false;
         this.timers = [];
@@ -93,6 +94,7 @@ class GameController {
     }
 
     handlePlayerClick(index) {
+        // Проверяем: сейчас ход игрока?
         if (!this.isPlayerTurn || this.isShowing || this.model.isGameOver) {
             return;
         }

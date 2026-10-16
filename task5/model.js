@@ -24,10 +24,10 @@ class GameModel {
     }
 
     reset() {
-        this.sequence = [];       // последовательность индексов
-        this.playerIndex = 0;     // текущий индекс игрока
-        this.level = 0;           // текущий уровень
-        this.isGameOver = false;  // флаг окончания игры
+        this.sequence = [];
+        this.playerIndex = 0;
+        this.level = 0;
+        this.isGameOver = false;
     }
 
     getRandomIndex() {
@@ -39,6 +39,7 @@ class GameModel {
         this.level++;
     }
 
+    
     checkPlayerMove(index) {
         const expected = this.sequence[this.playerIndex];
         const correct = index === expected;
@@ -54,7 +55,6 @@ class GameModel {
         return { correct: true, isRoundComplete };
     }
 
- 
     startNewRound() {
         this.playerIndex = 0;
     }
