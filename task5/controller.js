@@ -4,7 +4,6 @@ class GameController {
         this.view = view;
         this.config = model.config;
 
-        // Служебные флаги (НЕ состояние игры)
         this.isShowing = false;
         this.isPlayerTurn = false;
         this.timers = [];
