@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Сиреневая змейка</title>
+    <title>Змейка</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,7 +11,7 @@
     <div class="game-wrapper">
 
         <header class="game-header">
-            <h1>Сиреневая змейка</h1>
+            <h1>Змейка</h1>
             <p class="subtitle">Собирай яблоки, расти, не врезайся</p>
         </header>
 
@@ -21,25 +21,31 @@
                 <span class="status-value" id="score">0</span>
             </div>
             <div class="status-item">
+                <span class="status-label">Уровень</span>
+                <span class="status-value" id="level">1</span>
+            </div>
+            <div class="status-item">
                 <span class="status-label">Рекорд</span>
                 <span class="status-value" id="best">0</span>
             </div>
+            <button class="btn-pause" id="pause-btn" title="Пауза (Пробел)" disabled>⏸</button>
         </div>
 
         <div class="game-board">
             <canvas id="canvas" width="400" height="400"></canvas>
 
-            <div class="overlay hidden" id="overlay">
+            <div class="overlay" id="overlay">
                 <div class="overlay-content">
-                    <h2 class="overlay-title" id="overlay-title">Игра окончена</h2>
-                    <p class="overlay-text" id="overlay-text"></p>
-                    <button class="btn-restart" id="restart-btn">Начать заново</button>
+                    <div class="overlay-icon" id="overlay-icon">🐍</div>
+                    <h2 class="overlay-title" id="overlay-title">Сиреневая змейка</h2>
+                    <p class="overlay-text" id="overlay-text">Собирай яблоки и не врезайся в стены и свой хвост</p>
+                    <button class="btn-restart" id="restart-btn">🐍 Начать игру</button>
                 </div>
             </div>
         </div>
 
         <footer class="game-footer">
-            <p>Управление: стрелки ↑ ↓ ← →</p>
+            <p>Управление: стрелки ↑ ↓ ← → · Пауза: пробел или ESC</p>
         </footer>
 
     </div>

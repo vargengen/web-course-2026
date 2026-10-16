@@ -9,12 +9,14 @@ class GameView {
         this.boardSize = this.config.GRID_SIZE * this.config.CELL_SIZE;
 
         this.scoreEl = document.getElementById('score');
+        this.levelEl = document.getElementById('level');
         this.bestEl = document.getElementById('best');
         this.overlay = document.getElementById('overlay');
         this.overlayIcon = document.getElementById('overlay-icon');
         this.overlayTitle = document.getElementById('overlay-title');
         this.overlayText = document.getElementById('overlay-text');
         this.restartBtn = document.getElementById('restart-btn');
+        this.pauseBtn = document.getElementById('pause-btn');
     }
 
     draw() {
@@ -84,7 +86,7 @@ class GameView {
                 t
             );
 
-            const padding = i === 0 ? 1 : 2;   // голова чуть больше
+            const padding = i === 0 ? 1 : 2;
             const x = segment.x * cell + padding;
             const y = segment.y * cell + padding;
             const size = cell - padding * 2;
@@ -139,20 +141,62 @@ class GameView {
 
     updateScore() {
         this.scoreEl.textContent = this.model.score;
+        this.levelEl.textContent = this.model.getLevel();
         this.bestEl.textContent = this.model.bestScore;
     }
 
+    updatePauseButton() {
+        if (this.model.isStarted && !this.model.isGameOver) {
+            this.pauseBtn.disabled = false;
+            this.pauseBtn.textContent = this.model.isPaused ? '▶' : '⏸';
+        } else {
+            this.pauseBtn.disabled = true;
+            this.pauseBtn.textContent = '⏸';
+        }
+    }
+
+    showStartScreen() {
+        this.overlayIcon.textContent = '🐍';
+        this.overlayTitle.textContent = 'Сиреневая змейка';
+        this.overlayText.textContent = 'Собирай яблоки и не врезайся в стены и свой хвост';
+        this.restartBtn.textContent = '🐍 Начать игру';
+        this.overlay.classList.remove('hidden');
+        this.updatePauseButton();
+    }
+
+    showPause() {
+        this.overlayIcon.textContent = '⏸';
+        this.overlayTitle.textContent = 'Пауза';
+        this.overlayText.textContent = 'Нажми «Продолжить» или пробел, чтобы вернуться в игру';
+        this.restartBtn.textContent = '▶ Продолжить';
+        this.overlay.classList.remove('hidden');
+        this.updatePauseButton();
+    }
+
+    hidePause() {
+        this.overlay.classList.add('hidden');
+        this.updatePauseButton();
+    }
+
     showGameOver() {
+        this.overlayIcon.textContent = '💥';
         this.overlayTitle.textContent = 'Игра окончена';
         this.overlayText.textContent = `Твой счёт: ${this.model.score}. Рекорд: ${this.model.bestScore}.`;
+        this.restartBtn.textContent = '🐍 Начать заново';
         this.overlay.classList.remove('hidden');
+        this.updatePauseButton();
     }
 
     hideOverlay() {
         this.overlay.classList.add('hidden');
+        this.updatePauseButton();
     }
 
     onRestartClick(callback) {
         this.restartBtn.addEventListener('click', callback);
+    }
+
+    onPauseClick(callback) {
+        this.pauseBtn.addEventListener('click', callback);
     }
 }

@@ -1,11 +1,14 @@
 class GameModel {
     constructor() {
-        // Конфиг
         this.config = {
-            GRID_SIZE: 20,          
-            CELL_SIZE: 20,          
-            INITIAL_LENGTH: 3,      
-            MOVE_INTERVAL: 150,     
+            GRID_SIZE: 20,
+            CELL_SIZE: 20,
+            INITIAL_LENGTH: 3,
+
+            BASE_INTERVAL: 300,    
+            MIN_INTERVAL: 80,      
+            SPEED_STEP: 15,       
+
             STORAGE_KEY: 'snake-best',
             COLORS: {
                 snakeHead: '#A78BFA',
@@ -24,8 +27,6 @@ class GameModel {
     reset() {
         const center = Math.floor(this.config.GRID_SIZE / 2);
 
-        // Змейка — массив сегментов {x, y}
-        // Голова — первый элемент
         this.snake = [];
         for (let i = 0; i < this.config.INITIAL_LENGTH; i++) {
             this.snake.push({ x: center - i, y: center });
@@ -40,6 +41,17 @@ class GameModel {
         this.score = 0;
         this.isGameOver = false;
         this.isPaused = false;
+
+        this.isStarted = false;
+    }
+
+    getMoveInterval() {
+        const interval = this.config.BASE_INTERVAL - this.score * this.config.SPEED_STEP;
+        return Math.max(interval, this.config.MIN_INTERVAL);
+    }
+
+    getLevel() {
+        return Math.floor(this.score / 5) + 1;
     }
 
     spawnApple() {
@@ -68,7 +80,6 @@ class GameModel {
     }
 
     setDirection(dx, dy) {
-        // Нельзя развернуться на 180°
         if (dx === -this.direction.x && dy === -this.direction.y) {
             return false;
         }
@@ -78,7 +89,7 @@ class GameModel {
     }
 
     update() {
-        if (this.isGameOver || this.isPaused) {
+        if (!this.isStarted || this.isGameOver || this.isPaused) {
             return { moved: false, ate: false, gameOver: this.isGameOver };
         }
 
@@ -101,8 +112,8 @@ class GameModel {
         }
 
         const willEat = this.apple && newHead.x === this.apple.x && newHead.y === this.apple.y;
-
         const bodyToCheck = willEat ? this.snake : this.snake.slice(0, -1);
+
         if (bodyToCheck.some(seg => seg.x === newHead.x && seg.y === newHead.y)) {
             this.isGameOver = true;
             return { moved: false, ate: false, gameOver: true };
@@ -124,8 +135,13 @@ class GameModel {
     }
 
     togglePause() {
-        if (this.isGameOver) return;
+        if (this.isGameOver || !this.isStarted) return;
         this.isPaused = !this.isPaused;
+    }
+
+    start() {
+        this.isStarted = true;
+        this.isPaused = false;
     }
 
     loadBestScore() {

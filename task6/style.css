@@ -1,14 +1,14 @@
 :root {
-    --bg-page: #1E1B4B;         
-    --bg-card: #2E1065;         
-    --bg-canvas: #0F0A2E;        
-    --purple: #A78BFA;          
-    --purple-light: #C4B5FD;    
-    --purple-dark: #7C3AED;     
-    --pink: #FBCFE8;            
+    --bg-page: #1E1B4B;
+    --bg-card: #2E1065;
+    --bg-canvas: #0F0A2E;
+    --purple: #A78BFA;
+    --purple-light: #C4B5FD;
+    --purple-dark: #7C3AED;
+    --pink: #FBCFE8;
     --text: #F5F3FF;
     --text-light: #C4B5FD;
-    --accent: #FBBF24;          
+    --accent: #FBBF24;
 
     --radius: 16px;
     --transition: 0.25s ease;
@@ -64,6 +64,7 @@ body {
 .status-bar {
     display: flex;
     justify-content: space-around;
+    align-items: center;
     gap: 10px;
     background: rgba(167, 139, 250, 0.15);
     padding: 12px;
@@ -88,6 +89,34 @@ body {
     font-size: 1.3rem;
     font-weight: 700;
     color: var(--accent);
+}
+
+.btn-pause {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    font-family: inherit;
+    background: rgba(167, 139, 250, 0.2);
+    color: var(--purple-light);
+    border: 2px solid var(--purple);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all var(--transition);
+    align-self: center;
+}
+
+.btn-pause:hover:not(:disabled) {
+    background: var(--purple);
+    color: var(--white, #FFFFFF);
+    transform: scale(1.1);
+}
+
+.btn-pause:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
 
 .game-board {
@@ -179,6 +208,7 @@ body {
     transform: translateY(0);
 }
 
+/* ===== ПОДВАЛ ===== */
 .game-footer {
     text-align: center;
     color: var(--text-light);
@@ -186,11 +216,13 @@ body {
     font-style: italic;
 }
 
+/* ===== АНИМАЦИИ ===== */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
 }
 
+/* ===== АДАПТИВНОСТЬ ===== */
 @media (max-width: 480px) {
     .game-wrapper {
         padding: 15px;
@@ -201,6 +233,12 @@ body {
     }
 
     .status-value {
+        font-size: 1.1rem;
+    }
+
+    .btn-pause {
+        width: 40px;
+        height: 40px;
         font-size: 1.1rem;
     }
 }

@@ -10,9 +10,13 @@ class GameController {
     }
 
     init() {
-        this.view.onRestartClick(() => this.restart());
+        this.view.onRestartClick(() => this.handleRestartClick());
+        this.view.onPauseClick(() => this.handlePause());
 
         document.addEventListener('keydown', (e) => this.handleKeyDown(e));
+
+        this.view.draw();
+        this.view.showStartScreen();
 
         this.startGameLoop();
     }
@@ -20,11 +24,13 @@ class GameController {
     handleKeyDown(event) {
         const key = event.key;
 
-        if (key === ' ' || key === 'Spacebar') {
+        if (key === ' ' || key === 'Spacebar' || key === 'Escape') {
             event.preventDefault();
-            this.model.togglePause();
+            this.handlePause();
             return;
         }
+
+        if (!this.model.isStarted) return;
 
         const directions = {
             ArrowUp:    { x: 0,  y: -1 },
@@ -40,6 +46,28 @@ class GameController {
         }
     }
 
+    handlePause() {
+        if (!this.model.isStarted || this.model.isGameOver) return;
+
+        this.model.togglePause();
+
+        if (this.model.isPaused) {
+            this.view.showPause();
+        } else {
+            this.view.hidePause();
+            this.lastMoveTime = 0;
+        }
+    }
+
+    handleRestartClick() {
+        if (this.model.isPaused) {
+            this.handlePause();
+            return;
+        }
+
+        this.restart();
+    }
+
     gameLoop(currentTime) {
         if (this.lastMoveTime === 0) {
             this.lastMoveTime = currentTime;
@@ -47,7 +75,9 @@ class GameController {
 
         const deltaTime = currentTime - this.lastMoveTime;
 
-        if (deltaTime >= this.model.config.MOVE_INTERVAL) {
+        const moveInterval = this.model.getMoveInterval();
+
+        if (deltaTime >= moveInterval) {
             this.lastMoveTime = currentTime;
 
             const result = this.model.update();
@@ -55,12 +85,11 @@ class GameController {
             if (result.gameOver) {
                 this.view.draw();
                 this.view.showGameOver();
-                return;   // останавливаем цикл
+                return;
             }
         }
 
         this.view.draw();
-
         this.animationId = requestAnimationFrame((t) => this.gameLoop(t));
     }
 
@@ -76,11 +105,9 @@ class GameController {
         }
 
         this.model.reset();
-
+        this.model.start();
         this.view.hideOverlay();
-
         this.view.draw();
-
         this.startGameLoop();
     }
 }
